@@ -1,0 +1,64 @@
+<header class="bg-white fixed top-0 left-0 w-full z-10">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a [routerLink]="['/']" fragment="HeroSection" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt="Your Company" />
+            </a>
+        </div>
+        <div class="flex lg:hidden ">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                (click)="mobileMenuOpen = true">
+                <span class="sr-only">Open main menu</span>
+                <i class="pi pi-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <p-menubar [model]="menuItems" *ngIf="!mobileMenuOpen" styleClass="hidden lg:flex lg:gap-x-12 border-none"></p-menubar>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a routerLink="signIn" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                    aria-hidden="true">&rarr;</span></a>
+        </div>
+    </nav>
+    <p-dialog [(visible)]="mobileMenuOpen" [modal]="true" [style]="{width: '300px'}" (onHide)="mobileMenuOpen = false">
+        <div class="flex items-center justify-between">
+            <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt="Your Company" />
+            </a>
+            <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" (click)="mobileMenuOpen = false">
+                <span class="sr-only">Close menu</span>
+                <i class="pi pi-times" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="mt-6 flow-root">
+            <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="space-y-2 py-6">
+                    <div
+                        class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                        Product
+                        <i class="pi pi-chevron-down h-5 w-5 flex-none" aria-hidden="true"
+                            [ngClass]="{'rotate-180': mobileSubMenuOpen}"></i>
+                    </div>
+                    <div *ngIf="mobileSubMenuOpen" class="mt-2 space-y-2">
+                        <a *ngFor="let item of menuItems" [href]="item.routerLink"
+                            class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{
+                            item.label }}</a>
+                    </div>
+                    <a href="#"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                    <a href="#"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
+                    <a href="#"
+                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+                </div>
+                <div class="py-6">
+                    <a routerLink="/signIn"
+                        class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
+                        in</a>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+</header>
